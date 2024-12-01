@@ -8,72 +8,78 @@
 </head>
 <body>
 
-    <h1>Traductor</h1>
+<h1>Traductor</h1>
     
 <section class="main">
-        
-        <div class="input-word">
-            <input type="text" class="wordInput" placeholder="Escribe una palabra">
-        </div>
-        
-        <div class="radio-buttons">
-            <label><input type="radio" name="language" value="en-es" checked> Inglés a Español</label>
-            <label><input type="radio" name="language" value="es-en"> Español a Inglés</label>
-        </div>
-        
-
-        <button class="animated-button" onclick="translateWord()" href="#">
+    <div class="input-word">
+        <input type="text" class="wordInput" placeholder="Escribe una palabra">
+    </div>
+    
+    <div class="radio-buttons">
+        <label><input type="radio" name="language" value="en-es" checked> Inglés a Español</label>
+        <label><input type="radio" name="language" value="es-en"> Español a Inglés</label>
+    </div>
+    
+    <button class="animated-button" onclick="translateWord()">
         <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path
-            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
         </svg>
         <span class="text">Traducir</span>
         <span class="circle"></span>
         <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path
-            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
+            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
         </svg>
-        </button>
+    </button>
+</section>
+
+<section class="father-section">
+
+    <section class="dictionary">
+        <h2 class="title-dictionary">Diccionario de Palabras</h2>
+
+        <!-- Radio buttons para categorías -->
+        <div class="radio-category">
+            
+        <h3 class="title-category">Categorias disponibles</h3>
+            <label><input type="radio" name="category" value="frutas" checked> Frutas</label>
+            <label><input type="radio" name="category" value="colores"> Colores</label>
+            <label><input type="radio" name="category" value="comidas"> Comidas</label>
+            <label><input type="radio" name="category" value="descripciones"> Descripciones físicas</label>
+            <label><input type="radio" name="category" value="habilidades"> Habilidades</label>
+        </div>
+
+        <ul id="dictionaryList"></ul>
+    
+        <button class="btn" onclick="sortDictionary()">Ordenar Alfabéticamente</button>
+
+    </section>
+
+    <section class="form-words-news">
+        <h2 class="title-form">Formulario Nuevas Palabras</h2>
+        <!-- Formulario para añadir palabras -->
+        <form id="addWordForm">
+
+<div class="input-group">
+    <label class="label" for="newWord">Palabra en inglés</label>
+    <input type="text" class="input" id="newWord" placeholder="Palabra en inglés" required autocomplete="off">
+    <label class="label" for="translation">Traducción</label>
+    <input type="text" class="input" id="translation" placeholder="Traducción al español" required autocomplete="off">
+</div>
+
+            <div class="radio-category-form">
+                <label><input type="radio" name="newCategory" value="frutas" checked> Frutas</label>
+                <label><input type="radio" name="newCategory" value="colores"> Colores</label>
+                <label><input type="radio" name="newCategory" value="comidas"> Comidas</label>
+                <label><input type="radio" name="newCategory" value="colores"> Descripciones físicas</label>
+                <label><input type="radio" name="newCategory" value="comidas"> Habilidades</label>
+            </div>
+            
+            <button class="btn" type="submit">Agregar Palabra</button>
+        </form>
+    </section>
 
 </section>
 
-    <h2>Diccionario de Palabras</h2>
-    
-    <button onclick="sortDictionary()" alt="tony stark">
-      <i>t</i>
-      <i>o</i>
-      <i>n</i>
-      <i>y</i>
-      <i>&nbsp;</i>
-      <i>s</i>
-      <i>t</i>
-      <i>a</i>
-      <i>r</i>
-      <i>k</i>
-    </button>
-
-    <ul id="dictionaryList"></ul>
-  
-    <!-- Formulario para añadir palabras -->
-    <form id="addWordForm">
-<div class="inputGroup">
-    <input type="text" id="newWord" placeholder="Palabra en inglés" required="" autocomplete="off">
-    <label for="name">Name</label>
-    <input type="text" id="translation" placeholder="Traducción al español" required="" autocomplete="off">
-    <label for="name">Name</label>
-
-</div>
-
-      <select id="category">
-        <option value="frutas">Frutas</option>
-        <option value="colores">Colores</option>
-        <option value="comidas">Comidas</option>
-      </select>
-      <button type="submit">Agregar Palabra</button>
-    </form>
-    
-    <script src="script.js"></script>
-  </body>
+<script src="script.js"></script>
+</body>
 </html>
