@@ -91,3 +91,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const sortButton = document.querySelector('.btn');
     sortButton.addEventListener('click', sortDictionary);
 });
+
+/* funcionalidades formulario */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const addWordForm = document.getElementById('addWordForm');
+
+    addWordForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const newWord = document.getElementById('newWord').value.trim();
+        const translation = document.getElementById('translation').value.trim();
+        const selectedCategory = document.querySelector('input[name="newCategory"]:checked').value;
+
+        console.log("Categoría seleccionada: ", selectedCategory);
+
+        if (!newWord || !translation) {
+            alert("Por favor, ingresa tanto la palabra como su traducción.");
+            return;
+        }
+
+        if (!dictionary.categories.hasOwnProperty(selectedCategory)) {
+            alert("La categoría seleccionada no existe.");
+            return;
+        }
+
+        const newEntry = {
+            id: dictionary.categories[selectedCategory].length + 1,
+            english: newWord,
+            spanish: translation,
+            example: "Ejemplo aún no disponible"
+        };
+
+        dictionary.categories[selectedCategory].push(newEntry);
+
+        document.getElementById('newWord').value = "";
+        document.getElementById('translation').value = "";
+
+        displayWords();
+
+        alert(`La palabra "${newWord}" ha sido añadida correctamente.`);
+    });
+});
