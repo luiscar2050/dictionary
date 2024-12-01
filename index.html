@@ -20,7 +20,7 @@
         <label><input type="radio" name="language" value="es-en"> Español a Inglés</label>
     </div>
     
-    <button class="animated-button" onclick="translateWord()">
+    <button class="animated-button">
         <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
         </svg>
@@ -30,56 +30,75 @@
             <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
         </svg>
     </button>
+
 </section>
+<div class="result-search">
+    <h1>Significado: </h1>
+    <p></p>
+</div>
+
 
 <section class="father-section">
 
     <section class="dictionary">
         <h2 class="title-dictionary">Diccionario de Palabras</h2>
-
-        <!-- Radio buttons para categorías -->
-        <div class="radio-category">
-            
-        <h3 class="title-category">Categorias disponibles</h3>
-            <label><input type="radio" name="category" value="frutas" checked> Frutas</label>
-            <label><input type="radio" name="category" value="colores"> Colores</label>
-            <label><input type="radio" name="category" value="comidas"> Comidas</label>
-            <label><input type="radio" name="category" value="descripciones"> Descripciones físicas</label>
-            <label><input type="radio" name="category" value="habilidades"> Habilidades</label>
-        </div>
-
-        <ul id="dictionaryList"></ul>
     
-        <button class="btn" onclick="sortDictionary()">Ordenar Alfabéticamente</button>
-
+        <!-- Radio buttons para categorías -->
+        
+        <h3 class="title-category">Categorías disponibles</h3>
+        <div class="radio-category">
+            <label><input type="radio" name="category" value="fruits" checked> Frutas</label>
+            <label><input type="radio" name="category" value="colors"> Colores</label>
+            <label><input type="radio" name="category" value="animals"> Animales</label>
+            <label><input type="radio" name="category" value="physical_descriptions"> Descripciones físicas</label>
+            <label><input type="radio" name="category" value="skills"> Habilidades</label>
+            <label><input type="radio" name="category" value="verbs"> Acciones</label>
+        </div>
+    
+        <div class="table-result">
+            <h1>Palabras</h1>
+            <p>Selecciona una categoría para ver las palabras.</p>
+        </div>
+    
+        <button class="btn">Ordenar Alfabéticamente</button>
     </section>
 
     <section class="form-words-news">
         <h2 class="title-form">Formulario Nuevas Palabras</h2>
+        
         <!-- Formulario para añadir palabras -->
         <form id="addWordForm">
 
-<div class="input-group">
-    <label class="label" for="newWord">Palabra en inglés</label>
-    <input type="text" class="input" id="newWord" placeholder="Palabra en inglés" required autocomplete="off">
-    <label class="label" for="translation">Traducción</label>
-    <input type="text" class="input" id="translation" placeholder="Traducción al español" required autocomplete="off">
-</div>
-
-            <div class="radio-category-form">
-                <label><input type="radio" name="newCategory" value="frutas" checked> Frutas</label>
-                <label><input type="radio" name="newCategory" value="colores"> Colores</label>
-                <label><input type="radio" name="newCategory" value="comidas"> Comidas</label>
-                <label><input type="radio" name="newCategory" value="colores"> Descripciones físicas</label>
-                <label><input type="radio" name="newCategory" value="comidas"> Habilidades</label>
+            <div class="input-group">
+                <label class="label" for="newWord">Palabra en inglés</label>
+                <input type="text" class="input" id="newWord" placeholder="Palabra en inglés" required autocomplete="off">
+                <label class="label" for="translation">Traducción</label>
+                <input type="text" class="input" id="translation" placeholder="Traducción al español" required autocomplete="off">
             </div>
+    
+            <div class="radio-category-form">
+                <label><input type="radio" name="category" value="fruits" checked> Frutas</label>
+                <label><input type="radio" name="newCategory" value="colors"> Colores</label>
+                <label><input type="radio" name="newCategory" value="animals"> Animales</label>
+                <label><input type="radio" name="newCategory" value="physical_descriptions"> Descripciones físicas</label>
+                <label><input type="radio" name="newCategory" value="skills"> Habilidades</label>
+                <label><input type="radio" name="newCategory" value="verbs"> Acciones</label>
+            </div>            
             
-            <button class="btn" type="submit">Agregar Palabra</button>
+            <button class="btn-2" type="submit">Agregar Palabra</button>
         </form>
     </section>
 
 </section>
 
-<script src="script.js"></script>
+<footer>
+    <h1>Luis Carlos Salazar Cortes</h1>
+    <h3>ADSO - 2901723</h3>
+</footer>
+
+<script src="js/dictionary.js" type="module"></script>
+<script src="js/app.js" type="module"></script>
+
+
 </body>
 </html>
