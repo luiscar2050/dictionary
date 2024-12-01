@@ -40,7 +40,7 @@ function translateWord() {
     }
 }
 
-/*----------------------*/
+/* funcionalidades de diccionario*/
 
 function displayWords() {
     const selectedCategory = document.querySelector('input[name="category"]:checked').value;
