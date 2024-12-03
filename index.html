@@ -16,7 +16,7 @@
     </div>
     
     <div class="radio-buttons">
-        <label><input type="radio" name="language" value="en-es" checked> Inglés a Español</label>
+        <label><input type="radio" name="language" value="en-es"> Inglés a Español</label>
         <label><input type="radio" name="language" value="es-en"> Español a Inglés</label>
     </div>
     
@@ -47,7 +47,7 @@
         
         <h3 class="title-category">Categorías disponibles</h3>
         <div class="radio-category">
-            <label><input type="radio" name="category" value="fruits" checked> Frutas</label>
+            <label><input type="radio" name="category" value="fruits" > Frutas</label>
             <label><input type="radio" name="category" value="colors"> Colores</label>
             <label><input type="radio" name="category" value="animals"> Animales</label>
             <label><input type="radio" name="category" value="physical_descriptions"> Descripciones físicas</label>
@@ -60,7 +60,10 @@
             <p>Selecciona una categoría para ver las palabras.</p>
         </div>
     
-        <button class="btn">Ordenar Alfabéticamente</button>
+    <div class="button-order">
+        <button class="btn">Ordenar A-Z</button>
+    </div>
+
     </section>
 
     <section class="form-words-news">
@@ -74,10 +77,13 @@
                 <input type="text" class="input" id="newWord" placeholder="Palabra en inglés" required autocomplete="off">
                 <label class="label" for="translation">Traducción</label>
                 <input type="text" class="input" id="translation" placeholder="Traducción al español" required autocomplete="off">
+                <label class="label" for="addExample1">Agregar ejemplo de uso de palabra</label>
+                <input type="text" class="input" id="addExample" placeholder="Ejemplo de uso" required autocomplete="off"> 
             </div>
     
+            <h3 class="select-category">Seleccione Categoria</h3>
             <div class="radio-category-form">
-                <label><input type="radio" name="category" value="fruits" checked> Frutas</label>
+                <label><input type="radio" name="newCategory" value="fruits"> Frutas</label>
                 <label><input type="radio" name="newCategory" value="colors"> Colores</label>
                 <label><input type="radio" name="newCategory" value="animals"> Animales</label>
                 <label><input type="radio" name="newCategory" value="physical_descriptions"> Descripciones físicas</label>

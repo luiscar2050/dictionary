@@ -1,37 +1,52 @@
 import dictionary from './dictionary.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    const translateButton = document.querySelector('.animated-button');
+    // Desmarcar todas las categorías al cargar la página
+    const clearRadioSelection = (className) => {
+        const radioButtons = document.querySelectorAll(`.${className} input[type="radio"]`);
+        radioButtons.forEach(radio => radio.checked = false); // Desmarca todos los radios
+    };
 
+    // Limpia las selecciones en ambas secciones
+    clearRadioSelection('radio-category');
+    clearRadioSelection('radio-category-form');
+
+    // Asocia el botón de traducción con la función translateWord
+    const translateButton = document.querySelector('.animated-button');
     translateButton.addEventListener('click', translateWord);
 });
 
+// Función para traducir palabras
 function translateWord() {
     const wordInput = document.querySelector('.wordInput').value.trim();
-   
-    const language = document.querySelector('input[name="language"]:checked').value;
-   
+    const language = document.querySelector('input[name="language"]:checked');
+
+    if (!language) {
+        document.querySelector('.result-search p').textContent = "Por favor, selecciona un idioma de traducción.";
+        return;
+    }
+
     if (wordInput === "") {
         document.querySelector('.result-search p').textContent = "Por favor, ingresa una palabra.";
         return;
     }
-   
+
     let translation = "";
-   
+
     for (const category in dictionary.categories) {
         const words = dictionary.categories[category];
         for (const word of words) {
-            if (language === "en-es" && word.english.toLowerCase() === wordInput.toLowerCase()) {
+            if (language.value === "en-es" && word.english.toLowerCase() === wordInput.toLowerCase()) {
                 translation = word.spanish;
                 break;
-            } else if (language === "es-en" && word.spanish.toLowerCase() === wordInput.toLowerCase()) {
+            } else if (language.value === "es-en" && word.spanish.toLowerCase() === wordInput.toLowerCase()) {
                 translation = word.english;
                 break;
             }
         }
         if (translation) break;
     }
-   
+
     const resultElement = document.querySelector('.result-search p');
     if (translation) {
         resultElement.textContent = `La traducción de "${wordInput}" es: ${translation}`;
@@ -40,49 +55,58 @@ function translateWord() {
     }
 }
 
-/* funcionalidades de diccionario*/
-
+/* Funcionalidades del diccionario */
 function displayWords() {
-    const selectedCategory = document.querySelector('input[name="category"]:checked').value;
-    console.log("Categoría seleccionada:", selectedCategory);
-    const wordsList = dictionary.categories[selectedCategory];
+    const selectedCategory = document.querySelector('input[name="category"]:checked');
+
+    if (!selectedCategory) {
+        const tableResult = document.querySelector('.table-result');
+        tableResult.innerHTML = `<h1>Palabras</h1><p>Selecciona una categoría para ver las palabras.</p>`;
+        return;
+    }
+
+    const categoryValue = selectedCategory.value;
+    console.log("Categoría seleccionada:", categoryValue);
+    const wordsList = dictionary.categories[categoryValue];
+
+    const tableResult = document.querySelector('.table-result');
+    tableResult.innerHTML = `<h1>Palabras de ${categoryValue}</h1>`;
 
     if (wordsList && Array.isArray(wordsList)) {
-        const tableResult = document.querySelector('.table-result');
-        tableResult.innerHTML = `<h1>Palabras de ${selectedCategory}</h1>`;
-
         const ul = document.createElement('ul');
         wordsList.forEach(word => {
             const li = document.createElement('li');
-            li.textContent = word.english + " - " + word.spanish + ": " + word.example;
+            li.textContent = `${word.english} - ${word.spanish}: ${word.example}`;
             ul.appendChild(li);
         });
-
         tableResult.appendChild(ul);
     } else {
-        const tableResult = document.querySelector('.table-result');
-        tableResult.innerHTML = `<h1>Palabras de ${selectedCategory}</h1><p>No se encontraron palabras para esta categoría.</p>`;
-        console.error("No se encontraron palabras para esta categoría.");
+        tableResult.innerHTML += `<p>No se encontraron palabras para esta categoría.</p>`;
     }
 }
 
+// Función para ordenar palabras
 function sortDictionary() {
-    const selectedCategory = document.querySelector('input[name="category"]:checked').value;
-    console.log("Categoría seleccionada para ordenar:", selectedCategory); // Para depuración
-    let wordsList = dictionary.categories[selectedCategory]; // Obtiene las palabras de la categoría seleccionada
+    const selectedCategory = document.querySelector('input[name="category"]:checked');
+
+    if (!selectedCategory) {
+        console.error("No hay una categoría seleccionada para ordenar.");
+        return;
+    }
+
+    const categoryValue = selectedCategory.value;
+    let wordsList = dictionary.categories[categoryValue];
 
     if (wordsList && Array.isArray(wordsList)) {
-        wordsList.sort((a, b) => a.english.localeCompare(b.english)); // Ordena las palabras alfabéticamente por su nombre en inglés
-
-        displayWords();
+        wordsList.sort((a, b) => a.english.localeCompare(b.english));
+        displayWords(); // Vuelve a mostrar las palabras ordenadas
     } else {
         console.error("No se pueden ordenar las palabras porque no hay ninguna categoría seleccionada.");
     }
 }
 
+// Eventos para mostrar y ordenar palabras
 document.addEventListener('DOMContentLoaded', () => {
-    displayWords();
-
     const categoryRadios = document.querySelectorAll('input[name="category"]');
     categoryRadios.forEach(radio => {
         radio.addEventListener('change', displayWords);
@@ -92,8 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sortButton.addEventListener('click', sortDictionary);
 });
 
-/* funcionalidades formulario */
-
+/* Funcionalidades del formulario */
 document.addEventListener('DOMContentLoaded', () => {
     const addWordForm = document.getElementById('addWordForm');
 
@@ -102,33 +125,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const newWord = document.getElementById('newWord').value.trim();
         const translation = document.getElementById('translation').value.trim();
-        const selectedCategory = document.querySelector('input[name="newCategory"]:checked').value;
+        const addExample = document.getElementById('addExample').value.trim();
+        const selectedCategory = document.querySelector('input[name="newCategory"]:checked');
 
-        console.log("Categoría seleccionada: ", selectedCategory);
-
-        if (!newWord || !translation) {
-            alert("Por favor, ingresa tanto la palabra como su traducción.");
+        if (!newWord || !translation || !addExample) {
+            alert("Por favor, ingresa todos los campos.");
             return;
         }
 
-        if (!dictionary.categories.hasOwnProperty(selectedCategory)) {
+        if (!selectedCategory) {
+            alert("Por favor, selecciona una categoría.");
+            return;
+        }
+
+        const categoryValue = selectedCategory.value;
+
+        if (!dictionary.categories.hasOwnProperty(categoryValue)) {
             alert("La categoría seleccionada no existe.");
             return;
         }
 
         const newEntry = {
-            id: dictionary.categories[selectedCategory].length + 1,
+            id: dictionary.categories[categoryValue].length + 1,
             english: newWord,
             spanish: translation,
-            example: "Ejemplo aún no disponible"
+            example: addExample
         };
 
-        dictionary.categories[selectedCategory].push(newEntry);
+        dictionary.categories[categoryValue].push(newEntry);
 
+        // Limpiar campos del formulario
         document.getElementById('newWord').value = "";
         document.getElementById('translation').value = "";
+        document.getElementById('addExample').value = "";
 
-        displayWords();
+        displayWords(); // Actualiza la lista de palabras
 
         alert(`La palabra "${newWord}" ha sido añadida correctamente.`);
     });

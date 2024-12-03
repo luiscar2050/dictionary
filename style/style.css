@@ -8,6 +8,7 @@ body {
   width: 100%;
   height: 130vh;
   font-family: 'Poppins', sans-serif;
+  background-color: #f8f9f9;
 }
 
 
@@ -201,22 +202,31 @@ h2{
 /* Estilos diccionario */
 
 .dictionary{
-  width: 60%;
-  height: 80%;
+  width: 50%;
+  height: 80%; 
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #eaecee;
+  margin: 25px;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 10px #fdfefe;
 }
 
 .title-dictionary{
   width: 100%;
-  height: 10%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: cadetblue;
+
 }
 
 
  .btn-2 {
-  width: 130px;
-  height: 40px;
+  width: 20%;
+  height: 8%;
   font-size: 12px;
   cursor: pointer;
   background-color: #171717;
@@ -247,7 +257,7 @@ h2{
   gap: 10px;
   height: 15%;
   font-family: 'Times New Roman', Times, serif;
-  color: cadetblue;
+  color: #39a2db;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -255,7 +265,7 @@ h2{
 
 .radio-category{
   width: 60%;
-  height: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -264,7 +274,7 @@ h2{
 
 .table-result{
   width: 100%;
-  height: 90%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -291,11 +301,19 @@ h2{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #eaecee;
+  margin: 25px;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 10px #fdfefe;
 }
 
 .title-form{
   width: 100%;
-  height: 15%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: cadetblue;
 }
 
 .form-words-news > #addWordForm{
@@ -309,13 +327,33 @@ h2{
 
 .input-group{
   width: 100%;
-  height: 30%;
+  height: 42%;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 20px;
 }
 
+.select-category{
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-family: 'Times New Roman', Times, serif;
+  color: cadetblue;
+}
+
+.radio-category-form{
+  width: 70%;
+  height: 17%;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
 .input {
   max-width: 190px;
@@ -347,19 +385,16 @@ h2{
   color: cadetblue;
 }
 
-.radio-category-form{
-  width: 50%;
-  height: 30%;
+.button-order{
+  width: 100%;
+  height: 20%;
   display: flex;
-  align-content: center;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  align-items: center;
 }
 
-
 .btn {
-  width: 130px;
+  width: 20%;
   font-size: 12px;
   cursor: pointer;
   background-color: #171717;
