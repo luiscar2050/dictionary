@@ -1,22 +1,19 @@
 import dictionary from './dictionary.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Desmarcar todas las categorías al cargar la página
     const clearRadioSelection = (className) => {
         const radioButtons = document.querySelectorAll(`.${className} input[type="radio"]`);
-        radioButtons.forEach(radio => radio.checked = false); // Desmarca todos los radios
+        radioButtons.forEach(radio => radio.checked = false);
     };
 
-    // Limpia las selecciones en ambas secciones
     clearRadioSelection('radio-category');
     clearRadioSelection('radio-category-form');
 
-    // Asocia el botón de traducción con la función translateWord
     const translateButton = document.querySelector('.animated-button');
     translateButton.addEventListener('click', translateWord);
 });
 
-// Función para traducir palabras
+/* Funcionalidad para traducir palabras*/
 function translateWord() {
     const wordInput = document.querySelector('.wordInput').value.trim();
     const language = document.querySelector('input[name="language"]:checked');
@@ -85,7 +82,7 @@ function displayWords() {
     }
 }
 
-// Función para ordenar palabras
+/* Funcionalidad para ordenar palabras*/
 function sortDictionary() {
     const selectedCategory = document.querySelector('input[name="category"]:checked');
 
@@ -99,13 +96,12 @@ function sortDictionary() {
 
     if (wordsList && Array.isArray(wordsList)) {
         wordsList.sort((a, b) => a.english.localeCompare(b.english));
-        displayWords(); // Vuelve a mostrar las palabras ordenadas
+        displayWords();
     } else {
         console.error("No se pueden ordenar las palabras porque no hay ninguna categoría seleccionada.");
     }
 }
 
-// Eventos para mostrar y ordenar palabras
 document.addEventListener('DOMContentLoaded', () => {
     const categoryRadios = document.querySelectorAll('input[name="category"]');
     categoryRadios.forEach(radio => {
@@ -154,12 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         dictionary.categories[categoryValue].push(newEntry);
 
-        // Limpiar campos del formulario
         document.getElementById('newWord').value = "";
         document.getElementById('translation').value = "";
         document.getElementById('addExample').value = "";
 
-        displayWords(); // Actualiza la lista de palabras
+        displayWords();
 
         alert(`La palabra "${newWord}" ha sido añadida correctamente.`);
     });
